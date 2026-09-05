@@ -83,7 +83,7 @@ const websiteSchema = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <body className="flex min-h-dvh flex-col bg-background text-foreground md:h-dvh md:overflow-hidden">
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <a
             href="#main"
@@ -92,7 +92,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             跳到主要内容
           </a>
           <SiteHeader />
-          <div id="main" className="flex flex-1 flex-col">
+          <div id="main" className="flex min-h-0 flex-1 flex-col">
             {children}
           </div>
           <SiteFooter />

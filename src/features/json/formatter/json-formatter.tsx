@@ -120,25 +120,32 @@ export function JsonFormatter() {
   const showError = !isEmpty && !parsed.ok;
   const error = showError ? parsed.error : null;
 
+  // 输入是 JSON5 类宽松写法、且可被自动修复时，错误面板提供“一键修复”。
+  const canRepair = useMemo(() => {
+    if (parsed.ok || isEmpty) return false;
+    return repairJSON(input).ok;
+  }, [parsed, isEmpty, input]);
+
   return (
     <section aria-label="JSON 格式化与查看" className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm md:flex-1">
       {/* Toolbar */}
-      <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-border bg-muted/30 px-3 py-2">
+      <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-border bg-muted px-3 py-2">
         <Button variant="default" size="sm" onClick={handleFormat} disabled={isEmpty || !parsed.ok}>
           <Braces aria-hidden="true" />
           格式化
-        </Button>
-        <Button variant="secondary" size="sm" onClick={handleMinify} disabled={isEmpty || !parsed.ok}>
-          <Shrink aria-hidden="true" />
-          压缩
         </Button>
         <Button variant="secondary" size="sm" onClick={handleRepair} disabled={isEmpty}>
           <Wrench aria-hidden="true" />
           修复
         </Button>
+        <Button variant="secondary" size="sm" onClick={handleMinify} disabled={isEmpty || !parsed.ok}>
+          <Shrink aria-hidden="true" />
+          压缩
+        </Button>
 
         <div className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
 
+        <span className="text-xs text-muted-foreground">缩进</span>
         <Segmented<Indentation>
           ariaLabel="缩进"
           options={[
@@ -191,7 +198,7 @@ export function JsonFormatter() {
       {/* Panels */}
       <div className="flex min-h-0 flex-col md:flex-1 md:flex-row md:divide-x md:divide-border">
         {/* Input */}
-        <div className="flex min-h-0 flex-col md:flex-1">
+        <div className="flex min-h-0 flex-col bg-background md:flex-1">
           <div className="flex shrink-0 items-center justify-between border-b border-border px-3 py-1.5">
             <label htmlFor="json-input" className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               输入
@@ -238,7 +245,7 @@ export function JsonFormatter() {
                 </p>
               </div>
             ) : showError ? (
-              <JsonErrorPanel error={error!} />
+              <JsonErrorPanel error={error!} repairable={canRepair} onRepair={handleRepair} />
             ) : view === "tree" && parsed.ok ? (
               <JsonTreeView value={parsed.value} />
             ) : (

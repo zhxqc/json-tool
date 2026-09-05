@@ -30,7 +30,7 @@ describe("JsonFormatter", () => {
     expect(getTextarea()).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /格式化/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /压缩/ })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /修复/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "修复" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "复制输出" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "清空输入" })).toBeInTheDocument();
   });
@@ -82,7 +82,7 @@ describe("JsonFormatter", () => {
     render(<JsonFormatter />);
     fireEvent.change(getTextarea(), { target: { value: '{"name": "json",}' } });
 
-    await user.click(screen.getByRole("button", { name: /修复/ }));
+    await user.click(screen.getByRole("button", { name: "修复" }));
     expect(screen.getByText(/已自动修复/)).toBeInTheDocument();
     expect(screen.getByText(/有效 JSON/)).toBeInTheDocument();
     expect(getTextarea().value).not.toContain(",}");
@@ -170,5 +170,23 @@ describe("JsonFormatter", () => {
     expect(screen.queryByText('"b"')).not.toBeInTheDocument();
     // The rest of the tree stays visible.
     expect(screen.getByText('"name":')).toBeInTheDocument();
+  });
+
+  it("offers one-click repair for JSON5-style input and shows the result", async () => {
+    const user = userEvent.setup();
+    render(<JsonFormatter />);
+    // 裸键 + 单引号字符串：严格无效，但可自动修复。
+    fireEvent.change(getTextarea(), {
+      target: { value: '{ "a": "123", sss: \'122\', cc: 123 }' },
+    });
+
+    const alert = screen.getByRole("alert");
+    expect(within(alert).getByText(/无效 JSON/)).toBeInTheDocument();
+    expect(within(alert).getByText(/第 1 行，第 15 列/)).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "一键修复并展示" }));
+    expect(screen.getByText(/已自动修复 JSON/)).toBeInTheDocument();
+    expect(screen.getByText(/有效 JSON/)).toBeInTheDocument();
+    expect(getTextarea().value).toBe('{ "a": "123", "sss": "122", "cc": 123 }');
   });
 });

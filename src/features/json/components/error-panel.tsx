@@ -1,10 +1,22 @@
 "use client";
 
+import { Wrench } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import type { JsonErrorInfo } from "@/features/json/core";
 
+interface JsonErrorPanelProps {
+  error: JsonErrorInfo;
+  /** 输入是类似 JSON5 的宽松写法、可以自动修复为标准 JSON 时传入 true。 */
+  repairable?: boolean;
+  /** 点击“一键修复”时执行（修复并格式化展示）。 */
+  onRepair?: () => void;
+}
+
 /** Renders a detailed JSON error: message, line/column and the offending line
- *  with a caret pointing at the exact column. */
-export function JsonErrorPanel({ error }: { error: JsonErrorInfo }) {
+ *  with a caret pointing at the exact column. When the input is a looser,
+ *  JSON5-style document, offers a one-click repair action. */
+export function JsonErrorPanel({ error, repairable = false, onRepair }: JsonErrorPanelProps) {
   const caretLength = Math.max(0, Math.min(error.column - 1, error.lineText.length));
   return (
     <div className="flex h-full flex-col gap-3 overflow-auto p-4" role="alert">
@@ -35,6 +47,17 @@ export function JsonErrorPanel({ error }: { error: JsonErrorInfo }) {
           {"^"}
         </pre>
       </div>
+      {repairable && onRepair && (
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 rounded-md border border-ring/40 bg-ring/10 px-3 py-2.5">
+          <p className="text-xs leading-relaxed text-foreground/90">
+            检测到类似 JSON5 的宽松写法（如未加引号的键、单引号字符串），可自动修复为标准 JSON。
+          </p>
+          <Button size="sm" onClick={onRepair}>
+            <Wrench aria-hidden="true" />
+            一键修复并展示
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

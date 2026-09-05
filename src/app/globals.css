@@ -35,60 +35,62 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* A · 石墨 Graphite — 纯中性灰，朴素克制的工具感（浅色） */
 :root {
-  --background: #ebedf0;
-  --foreground: #16181d;
-  --card: #fbfcfd;
-  --card-foreground: #16181d;
-  --popover: #fbfcfd;
-  --popover-foreground: #16181d;
-  --primary: #16181d;
+  --background: #f4f5f7;
+  --foreground: #16181c;
+  --card: #ffffff;
+  --card-foreground: #16181c;
+  --popover: #ffffff;
+  --popover-foreground: #16181c;
+  --primary: #16181c;
   --primary-foreground: #ffffff;
-  --secondary: #e2e5e9;
-  --secondary-foreground: #1a1d21;
-  --muted: #e7eaee;
-  --muted-foreground: #5b6672;
-  --accent: #dde1e7;
-  --accent-foreground: #16181d;
+  --secondary: #e8eaee;
+  --secondary-foreground: #16181c;
+  --muted: #e8eaee;
+  --muted-foreground: #5c6570;
+  --accent: #e2e5ea;
+  --accent-foreground: #16181c;
   --destructive: #c9353f;
   --destructive-foreground: #ffffff;
-  --border: #cfd4db;
-  --input: #bcc3cc;
-  --ring: #4b7fd4;
+  --border: #d8dce1;
+  --input: #c9ced4;
+  --ring: #2456c4;
 
-  --json-key: #1d4fd8;
-  --json-string: #0c8a4a;
-  --json-number: #e0591a;
-  --json-boolean: #0e7f9c;
+  --json-key: #2456c4;
+  --json-string: #0e7a4f;
+  --json-number: #ad5700;
+  --json-boolean: #0e7490;
   --json-null: #c22a6b;
 }
 
+/* A · 石墨 Graphite（深色） */
 .dark {
-  --background: #0f1116;
-  --foreground: #f1f3f6;
-  --card: #161a21;
-  --card-foreground: #f1f3f6;
-  --popover: #161a21;
-  --popover-foreground: #f1f3f6;
-  --primary: #f1f3f6;
-  --primary-foreground: #0f1116;
-  --secondary: #1d222b;
-  --secondary-foreground: #f1f3f6;
-  --muted: #1d222b;
-  --muted-foreground: #a7b0ba;
-  --accent: #252b36;
-  --accent-foreground: #f1f3f6;
+  --background: #121418;
+  --foreground: #e8eaee;
+  --card: #181b20;
+  --card-foreground: #e8eaee;
+  --popover: #181b20;
+  --popover-foreground: #e8eaee;
+  --primary: #e8eaee;
+  --primary-foreground: #121418;
+  --secondary: #1d2127;
+  --secondary-foreground: #e8eaee;
+  --muted: #1d2127;
+  --muted-foreground: #9aa3ad;
+  --accent: #242932;
+  --accent-foreground: #e8eaee;
   --destructive: #f2555c;
   --destructive-foreground: #ffffff;
-  --border: #303742;
-  --input: #3c4450;
-  --ring: #5f97f0;
+  --border: #2b3037;
+  --input: #3a4048;
+  --ring: #5b82e0;
 
-  --json-key: #7fb7ff;
-  --json-string: #8ae8a6;
-  --json-number: #ffc066;
-  --json-boolean: #58e0ec;
-  --json-null: #ff8fae;
+  --json-key: #7fb4ff;
+  --json-string: #8ae0a8;
+  --json-number: #f5c26b;
+  --json-boolean: #5bd8e8;
+  --json-null: #ff95b0;
 }
 
 html {

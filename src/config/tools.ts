@@ -63,16 +63,6 @@ export const tools: ToolDefinition[] = [
     status: "live",
   },
   {
-    id: "minify",
-    name: "JSON 压缩",
-    shortName: "压缩",
-    path: "/minify",
-    description: "去除所有无意义的空白，将 JSON 压缩到最小体积，适合接口请求与日志。",
-    category: "Validate",
-    keywords: ["json minify", "json compress", "minified json", "json compact", "json 压缩", "json 去空格"],
-    status: "live",
-  },
-  {
     id: "repair",
     name: "JSON 修复",
     shortName: "修复",
@@ -80,6 +70,16 @@ export const tools: ToolDefinition[] = [
     description: "自动修复常见 JSON 错误：尾逗号、单引号、未加引号的键、注释等。",
     category: "Validate",
     keywords: ["json repair", "fix json", "broken json", "json 修复", "json 纠错", "修复损坏的 json"],
+    status: "live",
+  },
+  {
+    id: "minify",
+    name: "JSON 压缩",
+    shortName: "压缩",
+    path: "/minify",
+    description: "去除所有无意义的空白，将 JSON 压缩到最小体积，适合接口请求与日志。",
+    category: "Validate",
+    keywords: ["json minify", "json compress", "minified json", "json compact", "json 压缩", "json 去空格"],
     status: "live",
   },
   {
