@@ -1,27 +1,26 @@
-import { Braces } from "lucide-react";
 import Link from "next/link";
 
+import { LogoIcon } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { getLiveTools, tools } from "@/config/tools";
 import { SITE } from "@/config/site";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 /** Global site header: brand + tool navigation (from the registry) + theme
- *  toggle. The homepage is the formatter itself, so the formatter is not
- *  repeated in the nav. Rendered on the server. */
+ *  toggle, spanning the full viewport width. The homepage is the formatter
+ *  itself, so the formatter is not repeated in the nav. Rendered on the
+ *  server. */
 export function SiteHeader() {
   const navTools = getLiveTools().filter((tool) => tool.id !== "formatter");
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 sm:px-6">
+      <div className="flex h-14 w-full items-center gap-3 px-4 sm:px-6">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight text-foreground"
           aria-label={`${SITE.name} — 首页`}
         >
-          <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Braces aria-hidden="true" className="size-4" />
-          </span>
+          <LogoIcon className="size-7 shrink-0 rounded-md" />
           <span className="hidden sm:inline">{SITE.name}</span>
           <span className="sm:hidden">{SITE.shortName}</span>
         </Link>

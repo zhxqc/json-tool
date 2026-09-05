@@ -49,7 +49,7 @@ const webAppSchema = {
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-4 pb-0 pt-4 sm:px-6">
+    <main className="flex w-full flex-1 flex-col px-4 pb-0 pt-4 sm:px-6">
       {/* Screen-reader-only heading keeps page semantics for SEO/a11y while
        * leaving the full viewport to the editor. */}
       <h1 className="sr-only">JSON 格式化与查看</h1>

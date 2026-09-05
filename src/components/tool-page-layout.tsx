@@ -13,7 +13,7 @@ interface ToolPageProps {
  *  Server component; only `children` carries client interactivity. */
 export function ToolPage({ title, description, children }: ToolPageProps) {
   return (
-    <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-4 pb-0 pt-6 sm:px-6">
+    <main className="flex w-full flex-1 flex-col px-4 pb-0 pt-6 sm:px-6">
       <div className="max-w-3xl shrink-0">
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h1>
         <p className="mt-2 text-muted-foreground">{description}</p>

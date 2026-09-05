@@ -10,7 +10,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="flex w-full flex-col gap-4 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p className="leading-relaxed">
           <span className="font-semibold text-foreground">{SITE.name}</span>
           {" · "}
