@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -85,6 +84,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col bg-background text-foreground md:h-dvh md:overflow-hidden">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?65ecfc3971d81bf0e9f2f71375005488";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();`,
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <a
             href="#main"
@@ -99,17 +109,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteFooter />
           <JsonLd data={websiteSchema} />
         </ThemeProvider>
-        <Script id="baidu-analytics" strategy="beforeInteractive">
-          {`
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?65ecfc3971d81bf0e9f2f71375005488";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-`}
-        </Script>
       </body>
     </html>
   );
